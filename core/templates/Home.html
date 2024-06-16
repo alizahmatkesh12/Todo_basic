@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock%}
+
+{% block content %}
+
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'user_logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'user_register' %}">Register</a>
+            <a href="{% url 'user_login' %}">Login</a>
+        {% endif %}
+
+        <div class="card" style="background-color: lightgray; border: none">
+        {% for post in all %}
+                <div style="margin-bottom: 20px; margin-top: 100px">
+                    <a href="{%url 'details' post.id %}">{{ post.title }}</a></br>
+                    <hr/>
+                </div>
+        {% endfor %}
+        </div>
+{% endblock %}
